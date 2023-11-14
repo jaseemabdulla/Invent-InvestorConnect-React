@@ -10,7 +10,7 @@ function CardView() {
   const navigate = useNavigate()
 
   const handleNavigate = ()=>{
-    user ? navigate('/entrepreneur/singleEntrepreneur') : navigate('/entrepreneur/login')
+    user ? navigate('/entrepreneur/singleEntrepreneur') : navigate('/entrepreneur/signup')
   }
   const investorsData = [
     {

@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import investor from "../../assets/investor.jpg";
 
 function SingleEtrepreneur() {
   return (
-    <div className='text-white'>SingleEtrepreneur</div>
-  )
+    <>
+      <h1 className="text-white">hiiiiiiiiiiiiiiiiiiiiiiiiiii</h1>
+    </>
+  );
 }
 
-export default SingleEtrepreneur
+export default SingleEtrepreneur;

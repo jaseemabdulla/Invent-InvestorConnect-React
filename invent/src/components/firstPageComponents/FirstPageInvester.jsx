@@ -1,5 +1,6 @@
 import React from 'react'
 import investor from '../../assets/investor.jpg'
+import { Link } from 'react-router-dom'
 
 function FirstPageInvester() {
   return (
@@ -10,7 +11,9 @@ function FirstPageInvester() {
             <p className='font-bold text-[#00df9a]'>Jaseem pk</p>
             <h1 className='md:text-4xl sm:text-3xl text-2xl font-bold py-2'>Python Developer</h1>
             <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            <Link to={'/investor'}>
             <button className="bg-black w-[200px] rounded-md font-medium text-[#00df9a] mx-auto py-2 my-6">Get started</button>
+            </Link>
            </div>
         </div>
 

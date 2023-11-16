@@ -6,8 +6,8 @@ import AdminLogin from '../pages/adminPages/AdminLogin'
 function AdminRoute() {
   return (
     <Routes>
-        <Route path='/' element={<AdminHome/>}/>
-        <Route path='/login' element={<AdminLogin/>}/>
+        <Route path='/' element={<AdminLogin/>}/>
+        <Route path='/home' element={<AdminHome/>}/>
     </Routes>
   )
 }

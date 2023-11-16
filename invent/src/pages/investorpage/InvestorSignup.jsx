@@ -1,8 +1,11 @@
 import React from 'react'
+import UserSignup from '../userPages/UserSignup'
 
 function InvestorSignup() {
   return (
-    <div>InvestorSignup</div>
+    <>
+    <UserSignup role='investor'/>
+    </>
   )
 }
 

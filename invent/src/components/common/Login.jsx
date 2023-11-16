@@ -39,13 +39,24 @@ function Login() {
           })
         );
         toast.success(res?.data?.message, { theme: "dark" });
-        navigate("/entrepreneur/");
+        if (user.role === 'entrepreneur'){
+
+          navigate("/entrepreneur/");
+        } else {
+          navigate("/investor/");
+        }
       }
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      toast.error(error.response?.data?.message, { theme: "dark" });
+      toast.error('please logout Existing user', { theme: "dark" });
       console.log(error, "response in error");
+      if (user.role === 'entrepreneur'){
+
+        navigate("/entrepreneur/");
+      } else {
+        navigate("/investor/");
+      }
     }
   }
 
@@ -159,10 +170,10 @@ function Login() {
               </form>
               <div className="mt-4 text-sm text-gray-400 text-center">
                 <p>
-                  Already have an account?{" "}
-                  <Link to={"/entrepreneur/login"}>
+                  Don't have an account?{" "}
+                  <Link to={"/entrepreneur/signup"}>
                     <a href="#" className="text-white hover:underline">
-                      Login here
+                      Register
                     </a>
                   </Link>
                 </p>

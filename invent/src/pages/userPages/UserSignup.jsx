@@ -5,12 +5,15 @@ import {useFormik} from 'formik'
 import {signupSchema} from '../../validations/user/userSignupValidation'
 import {userSignupApi} from '../../api/userApi'
 import { toast } from 'react-toastify'
+import { useSelector } from 'react-redux'
 
-function UserSignup() {
+function UserSignup(props) {
 
   const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
+
+  const user = useSelector((state)=>state)
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = 
     useFormik({
@@ -18,7 +21,9 @@ function UserSignup() {
         email:"",
         password:"",
         phone_number:"",
-        first_name:""
+        first_name:"",
+        role:props.role
+
       },
       validationSchema:signupSchema,
       onSubmit
@@ -30,14 +35,20 @@ function UserSignup() {
         const res =await userSignupApi(values)
       if (res?.status === 200){
         toast.success(res?.data?.messege,{theme:"dark"})
-        navigate('/entrepreneur/login/')
+        navigate('/investor/login')
       }
       setLoading(false);
       }
       catch(error){
         setLoading(false);
-          toast.error(error.response?.data?.message,{theme:"dark"});
+          toast.error('plesae logout existing user',{theme:"dark"});
           console.log(error, "response in error");
+          if (user.role === 'entrepreneur'){
+
+            navigate("/entrepreneur");
+          } else {
+            navigate("/investor");
+          }
       }
     }
 
@@ -449,7 +460,7 @@ function UserSignup() {
               <p>
                 Already have an account?{" "}
                 <Link to={'/entrepreneur/login'}>
-                <a href="#" className="text-black hover:underline">
+                <a href="#" className="text-white hover:underline">
                   Login here
                 </a>
                 </Link>

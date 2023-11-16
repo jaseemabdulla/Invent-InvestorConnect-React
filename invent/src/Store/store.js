@@ -5,13 +5,15 @@ import { combineReducers } from '@reduxjs/toolkit';
 
 import userReducer from './slice/userSlice';
 import partnerReducer from './slice/partnerSlice'
+import adminReducer from './slice/adminSlice'
 
 
 const persistConfig = { key: 'root', storage, version: 1 };
 
 const reducer = combineReducers({
     userReducer,
-    partnerReducer
+    partnerReducer,
+    adminReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer);

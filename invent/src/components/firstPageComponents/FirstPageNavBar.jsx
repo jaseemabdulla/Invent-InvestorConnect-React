@@ -1,43 +1,76 @@
-import React, { useState } from "react";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import React from "react";
+import { Link } from "react-router-dom";
 
 function FirstPageNavBar() {
-  const [nav, setNav] = useState(false);
-
-  const handleNan = () => {
-    setNav(!nav);
-  };
   return (
-    <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white">
-      <h1 className="w-full text-3xl font-bold text-[#00df9a]">INVENT.</h1>
-      <ul className="hidden md:flex">
-        <li className="p-4">Home</li>
-        <li className="p-4">Company</li>
-        <li className="p-4">Resources</li>
-        <li className="p-4">About</li>
-        <li className="p-4">Contact</li>
-      </ul>
-      <div onClick={handleNan} className="block md:hidden">
-        {!nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+    <>
+      <div className="navbar bg-base-100 p-4">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a>Home</a>
+              </li>
+              <li>
+                <Link to={'/entrepreneur'}>
+                <a>Startup</a>
+                </Link>
+              </li>
+              <li>
+                <a>Investor</a>
+              </li>
+              <li>
+                <a>Mentors</a>
+              </li>
+              <li>
+                <a>Market Research</a>
+              </li>
+            </ul>
+          </div>
+          <a className="text-4xl font-bold">StartupGear.</a>
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">
+            <li>
+              <a>Home</a>
+            </li>
+            <li>
+              <Link to={'/entrepreneur'}>
+              <a>Startup</a>
+              </Link>
+            </li>
+            <li>
+              <a>Investor</a>
+            </li>
+            <li>
+              <a>Mentors</a>
+            </li>
+            <li>
+              <a>Market Research</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div
-        className={
-          !nav
-            ? "fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500  block md:hidden"
-            : "fixed left-[-100%]"
-        }
-      >
-        <h1 className="w-full text-3xl font-bold text-[#00df9a] m-4">INVENT.</h1>
-
-        <ul className="uppercase p-4">
-          <li className="p-4 border-b border-gray-600">Home</li>
-          <li className="p-4 border-b border-gray-600">Company</li>
-          <li className="p-4 border-b border-gray-600">Resources</li>
-          <li className="p-4 border-b border-gray-600">About</li>
-          <li className="p-4">Contact</li>
-        </ul>
-      </div>
-    </div>
+    </>
   );
 }
 

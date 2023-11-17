@@ -1,17 +1,14 @@
 import React from 'react'
 import FirstPageNavBar from '../../components/firstPageComponents/FirstPageNavBar'
 import FirstPageHeroOne from '../../components/firstPageComponents/FirstPageHeroOne'
-import FirstPageInvester from '../../components/firstPageComponents/FirstPageInvester'
-import FirstPageEntrepeneur from '../../components/firstPageComponents/FirstPageEntrepeneur'
-
+import Footer from '../../components/common/Footer'
 
 function  MainHome() {
   return (
     <div>
         <FirstPageNavBar/>
         <FirstPageHeroOne/>
-        <FirstPageInvester/>
-        <FirstPageEntrepeneur/>
+        <Footer/>
     </div>
   )
 }

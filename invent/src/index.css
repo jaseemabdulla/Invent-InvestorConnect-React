@@ -5,3 +5,13 @@
 body {
   background-color: #000300;
 }
+
+@layer components {
+  .btn-gradiant {
+    @apply font-bold py-2 px-4 rounded bg-gradient-to-r from-indigo-500 hover:from-indigo-700  via-purple-500 hover:via-purple-950 to-pink-500 hover:bg-black;
+  }
+
+  .btn-normal {
+    @apply bg-white mt-8 hover:bg-black hover:text-white hover:border text-black font-bold py-2 px-4 rounded;
+  }
+}

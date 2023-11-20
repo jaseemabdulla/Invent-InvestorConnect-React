@@ -29,7 +29,7 @@ function AdminLogin() {
       const res = await adminLoginAxios(values)
       if (res?.status === 200){
         const {token, user} = res.data
-        localStorage.setItem("userToken",token)
+        localStorage.setItem("userToken",token.access)
         dispatch(
           userLogin({
             token:token,

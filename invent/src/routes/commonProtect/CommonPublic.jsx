@@ -1,0 +1,25 @@
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
+function CommonPublic(props) {
+    const user = useSelector((state)=>state.userReducer.user)
+
+    if (user){
+        if(user.role === 'investor'){
+            return <Navigate to={'/investor'}/>
+        }
+        else if (user.role === 'entrepreneur'){
+            return <Navigate to={'/entrepreneur'}/>
+        }
+        else if (user.role === 'admin'){
+            return <Navigate to={'/admin/home'}/>
+        }
+    }
+    else {
+        return props.children
+    }
+}
+
+export default CommonPublic

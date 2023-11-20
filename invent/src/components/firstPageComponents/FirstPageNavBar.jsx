@@ -36,7 +36,9 @@ function FirstPageNavBar() {
                 </Link>
               </li>
               <li>
+                <Link to={'/investor'}>
                 <a>Investor</a>
+                </Link>
               </li>
               <li>
                 <a>Mentors</a>
@@ -59,7 +61,9 @@ function FirstPageNavBar() {
               </Link>
             </li>
             <li>
+            <Link to={'/investor'}>
               <a>Investor</a>
+              </Link>
             </li>
             <li>
               <a>Mentors</a>

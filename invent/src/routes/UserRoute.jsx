@@ -5,7 +5,8 @@ import UserLogin from "../pages/userPages/UserLogin";
 import UserSignup from "../pages/userPages/UserSignup";
 import SingleEtrepreneur from "../pages/userPages/SingleEtrepreneur";
 import UserProtect from "./userProtect/UserProtect";
-import UserPublic from "./userProtect/UserPublic";
+import CommonPublic from "./commonProtect/CommonPublic";
+
 
 function UserRoute() {
   return (
@@ -16,17 +17,17 @@ function UserRoute() {
       <Route
         path="/login"
         element={
-          <UserPublic>
-            <UserLogin />
-          </UserPublic>
+          
+            <CommonPublic><UserLogin /></CommonPublic>
+            
         }
       />
       <Route
         path="/signup"
         element={
-          <UserPublic>
-            <UserSignup />
-          </UserPublic>
+          
+            <CommonPublic><UserSignup /></CommonPublic>
+          
         }
       />
 

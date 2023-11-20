@@ -23,7 +23,7 @@ function Login() {
       },
       validationSchema: loginSchema,
       onSubmit,
-    });
+    });  
 
   async function onSubmit() {
     try {
@@ -31,7 +31,8 @@ function Login() {
       const res = await userLoginVerification(values);
       if (res?.status === 200) {
         const { token, user } = res.data;
-        localStorage.setItem("userToken", token);
+        console.log(token)
+        localStorage.setItem("userToken", token.access);
         dispatch(
           userLogin({
             token: token,

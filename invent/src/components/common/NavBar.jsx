@@ -38,47 +38,53 @@ function NavBar() {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <Link to={"/"}>
+              
                 <li>
-                  <a>Home</a>
+                <Link to={"/"}>Home</Link>
                 </li>
-              </Link>
+              
               <li>
-                <a>Startup</a>
+                <Link>Startup</Link>
               </li>
               <li>
-                <a>Investor</a>
+              <Link>Investor</Link>
               </li>
               <li>
-                <a>Mentors</a>
+              <Link>Mentors</Link>
+              
               </li>
               <li>
-                <a>Market Research</a>
+              <Link>Market Research</Link>
+               
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">
-            StartupGear.{user ? user.role : null}
-          </a>
+          <button className="text-4xl font-bold"> StartupGear.{user ? user.user.role : null}</button>
+        
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <Link to={"/"}>
+           
               <li>
-                <a>Home</a>
+              <Link to={"/"}>Home</Link>
               </li>
-            </Link>
+           
+          
             <li>
-              <a>Startup</a>
+            <Link to={"/entrepreneur"}>Startup</Link>
+            </li>
+           
+            
+            <li>
+            <Link to={"/investor"}>Investor</Link>
+            </li>
+            
+            <li>
+              <Link>Mentors</Link>
             </li>
             <li>
-              <a>Investor</a>
-            </li>
-            <li>
-              <a>Mentors</a>
-            </li>
-            <li>
-              <a>Market Research</a>
+            <Link>Market Research</Link>
+              
             </li>
           </ul>
         </div>
@@ -91,7 +97,9 @@ function NavBar() {
             <button onClick={handleLogout} className="btn-gradiant">Logout</button>
           </div>
           <div>
-            <img src={jaseem} className="w-12 h-12 rounded-full" />
+          <Link to={"/entrepreneur/profile"}>
+            <img src={user?.profile_picture ?? jaseem} className="w-12 h-12 rounded-full" />
+            </Link>
           </div>
           
         </div>

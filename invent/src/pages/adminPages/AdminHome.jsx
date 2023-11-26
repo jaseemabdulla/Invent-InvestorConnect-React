@@ -59,12 +59,21 @@ function AdminHome() {
 
   const handleBlockUser = async(user_id) =>{
     try{
+      console.log(user_id)
       setLoading(true)
       const res = await adminBlockUserAxios(user_id)
       if (res.status === 200){
-        console.log(res.data)
+        const updatedEntrepreneurList = entrepreneur.map((user)=>{
+          if(user.id === user_id){
+            return {...user,is_blocked:!user.is_blocked}
+          }
+          return user
+        })
+        setEntrepreneur(updatedEntrepreneurList)
+        console.log('newwwwwwwwwwwwwwwwwwwwwww',updatedEntrepreneurList);
         toast.success('user blocked',{theme:"dark"})
         setLoading(false)
+
       }
       setLoading(false)
     }
@@ -73,6 +82,7 @@ function AdminHome() {
       toast.error('server error',{theme:"dark"})
     }
   }
+  
 
   useEffect(() => {
     fetchDataInvestors();

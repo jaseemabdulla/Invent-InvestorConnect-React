@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import jaseem from "../../assets/investor.jpg";
+import NavBar from "../../components/common/NavBar";
 
 function InvestorHome() {
   return (
     <>
       {/* nav bar investor*/}
-
+      <NavBar/>
       <div className="flex justify-between p-4">
         <div>
           <h1 className="text-3xl font-bold">InvestGear</h1>

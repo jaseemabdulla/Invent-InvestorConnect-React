@@ -6,6 +6,8 @@ import UserSignup from "../pages/userPages/UserSignup";
 import SingleEtrepreneur from "../pages/userPages/SingleEtrepreneur";
 import UserProtect from "./userProtect/UserProtect";
 import CommonPublic from "./commonProtect/CommonPublic";
+import EditProfile from "../components/common/EditProfile";
+import UserProfile from "../pages/userPages/UserProfile";
 
 
 function UserRoute() {
@@ -39,6 +41,7 @@ function UserRoute() {
           </UserProtect>
         }
       />
+      <Route path="/profile" element={<UserProtect><UserProfile/></UserProtect>}/>
     </Routes>
   );
 }

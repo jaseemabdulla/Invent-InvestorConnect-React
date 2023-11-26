@@ -11,7 +11,7 @@ import { useFormik } from "formik";
 import Loading from "../common/Loading";
 import { loginSchema } from "../../validations/user/loginValidation";
 
-function Login() {
+function Login({role}) {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,7 +31,8 @@ function Login() {
       const res = await userLoginVerification(values);
       if (res?.status === 200) {
         const { token, user } = res.data;
-        console.log(token)
+        console.log(token,'=============================token=======================')
+        console.log(user,'=============================user=======================')
         localStorage.setItem("userToken", token.access);
         dispatch(
           userLogin({
@@ -40,24 +41,20 @@ function Login() {
           })
         );
         toast.success(res?.data?.message, { theme: "dark" });
-        if (user.role === 'entrepreneur'){
+        if (user.user.role === 'entrepreneur'){
 
           navigate("/entrepreneur/");
         } else {
           navigate("/investor/");
         }
+      }else{
+        toast.success(res?.data?.message, { theme: "dark" });
       }
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      toast.error('please logout Existing user', { theme: "dark" });
+      toast.error(error.response.data.message, { theme: "dark" });
       console.log(error, "response in error");
-      if (user.role === 'entrepreneur'){
-
-        navigate("/entrepreneur/");
-      } else {
-        navigate("/investor/");
-      }
     }
   }
 
@@ -172,11 +169,20 @@ function Login() {
               <div className="mt-4 text-sm text-gray-400 text-center">
                 <p>
                   Don't have an account?{" "}
+                  {role === 'entrepreneur' ? (
+
                   <Link to={"/entrepreneur/signup"}>
                     <a href="#" className="text-white hover:underline">
                       Register
                     </a>
                   </Link>
+                  ):(
+                    <Link to={"/investor/signup"}>
+                    <a href="#" className="text-white hover:underline">
+                      Register
+                    </a>
+                  </Link> 
+                  )}
                 </p>
               </div>
             </div>

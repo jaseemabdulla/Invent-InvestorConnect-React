@@ -5,15 +5,15 @@ import { toast } from 'react-toastify'
 
 function CommonPublic(props) {
     const user = useSelector((state)=>state.userReducer.user)
-
+   
     if (user){
-        if(user.role === 'investor'){
+        if(user.user.role === 'investor'){
             return <Navigate to={'/investor'}/>
         }
-        else if (user.role === 'entrepreneur'){
+        else if (user.user.role === 'entrepreneur'){
             return <Navigate to={'/entrepreneur'}/>
         }
-        else if (user.role === 'admin'){
+        else if (user.user.role === 'admin'){
             return <Navigate to={'/admin/home'}/>
         }
     }

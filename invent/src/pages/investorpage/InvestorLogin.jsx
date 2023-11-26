@@ -6,7 +6,7 @@ function InvestorLogin() {
   return (
     <>
     <NavBar/>
-    <Login/>
+    <Login role='investor'/>
     </>
   )
 }

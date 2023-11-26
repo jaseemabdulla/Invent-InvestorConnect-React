@@ -6,7 +6,7 @@ function UserLogin() {
   return (
     <>
     <NavBar/>
-    <Login/>
+    <Login role = 'entrepreneur'/>
     </>
   )
 }

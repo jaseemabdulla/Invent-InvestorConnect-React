@@ -4,12 +4,12 @@ import { Navigate } from 'react-router-dom'
 
 function AdminProtect(props) {
   const user = useSelector((state)=>state.userReducer.user)
-  if (user && user.role === 'admin'){
+  if (user && user.user.role === 'admin'){
     return props.children
   }
   else{
-    return Navigate('/admin')
+    return <Navigate to={'/admin'}/>
   }
 }
-
+     
 export default AdminProtect

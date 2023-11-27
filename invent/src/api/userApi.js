@@ -17,3 +17,17 @@ export const updateEntrepreneurProfileAxios = async (editdata) =>{
     const data  = await axios.post('/api/updateEnterpreneur/',editdata)
     return data
 }
+
+
+export const addStartupAxios = async (startupData)=>{
+    const data = await axios.post('/startup/addStartup/',startupData)
+    return data
+}
+
+
+// list user's startups
+
+export const listUserStartupAxios = async ()=> {
+    const data = await axios.get('/startup/listUserStartups/')
+    return data
+}

@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import jaseem from "../../assets/investor.jpg";
-import NavBar from "./NavBar";
+import React from 'react'
 
-function Try() {
+function StartupFullDetail() {
   return (
     <>
-      <div className="flex flex-col items-center p-10">
+    <div className="flex flex-col items-center p-10">
         <div className="mt-10">
           <div className="text-center">
             <h1 className="text-3xl font-bold">Entrepreneur Details</h1>
@@ -33,7 +31,7 @@ function Try() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Try;
+export default StartupFullDetail

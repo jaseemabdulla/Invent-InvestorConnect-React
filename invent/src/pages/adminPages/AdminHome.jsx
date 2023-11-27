@@ -9,6 +9,7 @@ import {
 import { toast } from "react-toastify";
 import Loading from "../../components/common/Loading";
 import jaseem from "../../assets/investor.jpg";
+import StartupManagment from "../../components/adminComponents/StartupManagment";
 
 function AdminHome() {
   const [loading, setLoading] = useState(false);
@@ -21,7 +22,6 @@ function AdminHome() {
     try {
       setLoading(true);
       const res = await adminInvestorsListAxios();
-      console.log(res.status);
       if (res.status === 200) {
         setinvestos(res.data);
       } else {
@@ -41,7 +41,6 @@ function AdminHome() {
     try {
       setLoading(true);
       const res = await adminEntrepreneursListAxios();
-      console.log(res.data);
       if (res.status === 200) {
         setEntrepreneur(res.data);
       } else {
@@ -59,7 +58,6 @@ function AdminHome() {
 
   const handleBlockUser = async(user_id) =>{
     try{
-      console.log(user_id)
       setLoading(true)
       const res = await adminBlockUserAxios(user_id)
       if (res.status === 200){
@@ -70,7 +68,6 @@ function AdminHome() {
           return user
         })
         setEntrepreneur(updatedEntrepreneurList)
-        console.log('newwwwwwwwwwwwwwwwwwwwwww',updatedEntrepreneurList);
         toast.success('user blocked',{theme:"dark"})
         setLoading(false)
 
@@ -182,6 +179,11 @@ function AdminHome() {
                 </div>
               )}
             </div>
+          </Tab>
+          <Tab label="Startup Managment">
+            
+            <StartupManagment/>
+
           </Tab>
         </Tabs>
       </div>

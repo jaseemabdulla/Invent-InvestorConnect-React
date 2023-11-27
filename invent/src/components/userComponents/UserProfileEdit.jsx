@@ -43,7 +43,7 @@ function UserProfileEdit() {
       if (first_name !== user.first_name) {
         formData.append("first_name", first_name);
       }
-
+ 
       if (linkedin_link !== user.linkedin_link) {
         formData.append("linkedin_link", linkedin_link);
       }

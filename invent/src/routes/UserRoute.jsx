@@ -8,6 +8,7 @@ import UserProtect from "./userProtect/UserProtect";
 import CommonPublic from "./commonProtect/CommonPublic";
 import EditProfile from "../components/common/EditProfile";
 import UserProfile from "../pages/userPages/UserProfile";
+import StartupStatus from "../pages/userPages/StartupStatus";
 
 
 function UserRoute() {
@@ -42,6 +43,8 @@ function UserRoute() {
         }
       />
       <Route path="/profile" element={<UserProtect><UserProfile/></UserProtect>}/>
+      <Route path="/startupStatus" element={<UserProtect><StartupStatus/></UserProtect>}/>
+      
     </Routes>
   );
 }

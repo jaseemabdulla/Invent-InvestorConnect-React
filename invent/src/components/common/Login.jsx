@@ -36,6 +36,7 @@ function Login({role}) {
         localStorage.setItem("userToken", token.access);
         dispatch(
           userLogin({
+            
             token: token,
             user: user,
           })

@@ -4,7 +4,7 @@ import { listApprovedStartupAxios, listPendingStartupAxios, listRejectedStartupA
 import { toast } from "react-toastify";
 import Loading from "../common/Loading";
 
-function StartupManagment() {
+function StartupManagment({ onStartupClick }) {
 
     const [pendingStartups, setPendingStartups] = useState([])
     const [approvedStartups, setApprovedStartups] = useState([])
@@ -84,7 +84,7 @@ function StartupManagment() {
             {pendingStartups.map((item,key)=>(
           <div className="card w-1/3 lg:w-1/5 bg-base-100 shadow-xl border" key={key}>
             <figure className="px-10 pt-10">
-              <img src={jaseem} alt="Shoes" className="rounded-xl" />
+              <img src={jaseem} alt="Shoes" className="rounded-xl" onClick={()=> onStartupClick(item.id)}/>
             </figure>
             <div className="card-body items-center text-center">
               <h2 className="card-title">{item.startup_name}</h2>
@@ -107,7 +107,7 @@ function StartupManagment() {
                 approvedStartups.map((item,key)=>(
           <div className="card w-1/3 lg:w-1/5 bg-base-100 shadow-xl border">
             <figure className="px-10 pt-10">
-              <img src={jaseem} alt="Shoes" className="rounded-xl" />
+              <img src={jaseem} alt="Shoes" className="rounded-xl" onClick={()=> onStartupClick(item.id)}/>
             </figure>
             <div className="card-body items-center text-center">
               <h2 className="card-title">{item.startup_name}</h2>
@@ -130,7 +130,7 @@ function StartupManagment() {
                 rejectedStartups.map((item,key)=>(
           <div className="card w-1/3 lg:w-1/5 bg-base-100 shadow-xl border">
             <figure className="px-10 pt-10">
-              <img src={jaseem} alt="Shoes" className="rounded-xl" />
+              <img src={jaseem} alt="Shoes" className="rounded-xl" onClick={()=> onStartupClick(item.id)}/>
             </figure>
             <div className="card-body items-center text-center">
               <h2 className="card-title">{item.startup_name}</h2>

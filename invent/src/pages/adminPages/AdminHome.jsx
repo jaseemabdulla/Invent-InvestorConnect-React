@@ -9,7 +9,7 @@ import {
 import { toast } from "react-toastify";
 import Loading from "../../components/common/Loading";
 import jaseem from "../../assets/investor.jpg";
-import StartupManagment from "../../components/adminComponents/StartupManagment";
+import AdminStartupList from "../../components/adminComponents/AdminStartupList";
 
 function AdminHome() {
   const [loading, setLoading] = useState(false);
@@ -182,7 +182,7 @@ function AdminHome() {
           </Tab>
           <Tab label="Startup Managment">
             
-            <StartupManagment/>
+            <AdminStartupList/>
 
           </Tab>
         </Tabs>

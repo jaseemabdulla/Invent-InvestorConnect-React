@@ -41,3 +41,18 @@ export const listRejectedStartupAxios = async () => {
     const data = await axiosInstance.get('/startup/listRejectedStartups/')
     return data
 }
+
+// get a single startup 
+
+export const getSingleStartupAxios = async (startupId) => {
+    const data = await axiosInstance.get(`/startup/getSingleStartup/${startupId}/`)
+    return data
+}
+
+
+// startup status change
+
+export const updateStartupStatusAxios = async (startupId,status) => {
+    const data = await axiosInstance.patch(`/startup/updateStartupStatus/${startupId}/`,status)
+    return data
+}

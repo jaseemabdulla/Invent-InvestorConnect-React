@@ -2,11 +2,12 @@ import React from 'react'
 import FirstPageNavBar from '../../components/firstPageComponents/FirstPageNavBar'
 import FirstPageHeroOne from '../../components/firstPageComponents/FirstPageHeroOne'
 import Footer from '../../components/common/Footer'
+import NavBar from '../../components/common/NavBar'
 
 function  MainHome() {
   return (
     <div>
-        <FirstPageNavBar/>
+        <NavBar/>
         <FirstPageHeroOne/>
         <Footer/>
     </div>

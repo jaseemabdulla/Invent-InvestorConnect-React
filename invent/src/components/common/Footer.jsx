@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Footer() {
-  return (
+  return (  
     <>
     {/* section footer */}
 

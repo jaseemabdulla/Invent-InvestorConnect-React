@@ -31,3 +31,10 @@ export const listUserStartupAxios = async ()=> {
     const data = await axios.get('/startup/listUserStartups/')
     return data
 }
+
+// payment stripe checkout
+
+export const stripeCeckoutAxios = async () => {
+    const data = await axios.post('/payment/createCheckoutSession/')
+    return data
+}

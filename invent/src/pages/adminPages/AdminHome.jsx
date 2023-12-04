@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import Loading from "../../components/common/Loading";
 import jaseem from "../../assets/investor.jpg";
 import AdminStartupList from "../../components/adminComponents/AdminStartupList";
+import AddMentor from "../../components/adminComponents/AddMentor";
 
 function AdminHome() {
   const [loading, setLoading] = useState(false);
@@ -184,6 +185,10 @@ function AdminHome() {
             
             <AdminStartupList/>
 
+          </Tab>
+          <Tab label="Add Mentors">
+            
+            <AddMentor/>
           </Tab>
         </Tabs>
       </div>

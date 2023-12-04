@@ -50,7 +50,7 @@ function NavBar() {
               <Link>Investor</Link>
               </li>
               <li>
-              <Link>Mentors</Link>
+              <Link to={"/mentor"}>Mentors</Link>
               
               </li>
               <li>
@@ -80,7 +80,7 @@ function NavBar() {
             </li>
             
             <li>
-              <Link>Mentors</Link>
+              <Link to={"/mentor"}>Mentors</Link>
             </li>
             <li>
             <Link>Market Research</Link>

@@ -56,3 +56,11 @@ export const updateStartupStatusAxios = async (startupId,status) => {
     const data = await axiosInstance.patch(`/startup/updateStartupStatus/${startupId}/`,status)
     return data
 }
+
+// add mentore
+
+export const createMentorProfileAxios = async (mentorData) => {
+    console.log('',mentorData);
+    const data = await axiosInstance.post('/mentor/createMentorProfile/',mentorData)
+    return data      
+}

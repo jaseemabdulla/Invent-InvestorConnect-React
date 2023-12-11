@@ -75,7 +75,7 @@ function AdminHome() {
       }
       setLoading(false)
     }
-    catch(error){
+    catch(error){ 
       console.log(error)
       toast.error('server error',{theme:"dark"})
     }

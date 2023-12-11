@@ -1,189 +1,53 @@
-import React, { useState } from "react";
-import jaseem from "../../assets/investor.jpg";
+import React, { useState, useEffect } from "react";
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 import NavBar from "./NavBar";
 
 function Try() {
   return (
     <>
-      <NavBar />
-      <div className="flex min-h-screen pt-[30px] px-[40px]">
-        <div className="min-w-full">
-          
-        
-          <div className="mt-[30px] inline-flex border border-[#E1E3E5] shadow-[0px 1px 2px #E1E3E5] divide-[#E1E3E5] divide-x rounded-[5px]">
-            <button className="bg-white hover:bg-[#F6F6F7] hover:text-[#717F87] text-[#0E1823] leading-[16px] text-[13px]  font-bold py-[15px] px-[25px] rounded-l">
-              Monthly
-            </button>
-            <button className="bg-white hover:bg-[#F6F6F7] hover:text-[#717F87] text-[#0E1823] text-[13px] leading-[16px]  font-bold py-[15px] px-[25px] rounded-r">
-              Annual
-            </button>
-          </div>
-          <div className="mt-[20px] grid grid-cols-3 gap-[20px]">
-            <div
-              key={1}
-              className="w-full bg-[#fff] rounded-[10px] shadow-[0px 1px 2px #E1E3E5] border border-[#E1E3E5] divide-y"
-            >
-              <div className="pt-[15px] px-[25px] pb-[25px]">
-                <div className="flex justify-end">
-                  <div className="bg-[#F6F6F7] rounded-[20px] flex justify-center align-center px-[12px]">
-                    <p className="text-[#00153B] text-[12px] leading-[28px] font-bold">
-                      Starter
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <p className="text-[#00153B] text-[19px] leading-[24px] font-bold">
-                    Trial
-                  </p>
-                  <p className="text-[#00153B] text-[50px] leading-[63px] font-bold">
-                    Free
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[#717F87] text-[18px] leading-[28px] font-medium">
-                    5 Credits
-                  </p>
-                  <p className="text-[#717F87] text-[18px] leading-[28px] font-medium">
-                    1 User
-                  </p>
-                </div>
-              </div>
-              <div className="pt-[25px] px-[25px] pb-[35px]">
-                <div>
-                  <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    Direct Phone Numbers
-                  </p>
-                  <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    Landline Phone Numbers
-                  </p>
-                  <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    Corporate email addresses
-                  </p>
-                  <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    Propsetcs
-                  </p>
-                  <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    Chrome Extension
-                  </p>
-                </div>
-                <div className="mt-[25px]">
-                  <button className="bg-[#006EF5] rounded-[5px] py-[15px] px-[25px] text-[#fff] text-[14px] leading-[17px] font-semibold">
-                    Downgrade +
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              key={2}
-              className="w-full bg-[#fff] rounded-[10px] shadow-[0px 1px 2px #E1E3E5] border border-[#E1E3E5] divide-y"
-            >
-              <div className="pt-[15px] px-[25px] pb-[25px]">
-                <div className="flex justify-end">
-                  <div className="bg-[#F6F6F7] rounded-[20px] flex justify-center align-center px-[12px]">
-                    <p className="text-[#00153B] text-[12px] leading-[28px] font-bold">
-                      Value
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <p className="text-[#00153B] text-[19px] leading-[24px] font-bold">
-                    Fast Start
-                  </p>
-                  <p className="text-[#00153B] text-[50px] leading-[63px] font-bold">
-                    $49
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[#717F87] text-[18px] leading-[28px] font-medium">
-                    50 Credits per month
-                  </p>
-                  <p className="text-[#717F87] text-[18px] leading-[28px] font-medium">
-                    Unlimited users
-                  </p>
-                </div>
-              </div>
-              <div className="pt-[25px] px-[25px] pb-[35px]">
-                <div>
-                  <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    Direct Phone Numbers
-                  </p>
-                  <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    Landline Phone Numbers
-                  </p>
-                  <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    Corporate email addresses
-                  </p>
-                  <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    Propsetcs
-                  </p>
-                  <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    Chrome Extension
-                  </p>
-                </div>
-                <div className="mt-[25px]">
-                  <button className="bg-[#E1E3E5] rounded-[5px] py-[15px] px-[25px] text-[#fff] text-[14px] leading-[17px] font-semibold">
-                    Current Plan
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              key={3}
-              className="w-full bg-[#fff] rounded-[10px] shadow-[0px 1px 2px #E1E3E5] border border-[#E1E3E5] divide-y"
-            >
-              <div className="pt-[15px] px-[25px] pb-[25px]">
-                <div className="flex justify-end">
-                  <div className="bg-[#F6F6F7] rounded-[20px] flex justify-center align-center px-[12px]">
-                    <p className="text-[#00153B] text-[12px] leading-[28px] font-bold">
-                      Pro
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <p className="text-[#00153B] text-[19px] leading-[24px] font-bold">
-                    Accelerate
-                  </p>
-                  <p className="text-[#00153B] text-[50px] leading-[63px] font-bold">
-                    $89
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[#717F87] text-[18px] leading-[28px] font-medium">
-                    100 Credits per month
-                  </p>
-                  <p className="text-[#717F87] text-[18px] leading-[28px] font-medium">
-                    Unlimited users
-                  </p>
-                </div>
-              </div>
-              <div className="pt-[25px] px-[25px] pb-[35px]">
-                <div>
-                  <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    Direct Phone Numbers
-                  </p>
-                  <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    Landline Phone Numbers
-                  </p>
-                  <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    Corporate email addresses
-                  </p>
-                  <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    Propsetcs
-                  </p>
-                  <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    Chrome Extension
-                  </p>
-                </div>
-                <div className="mt-[25px]">
-                  <button className="bg-[#006EF5] rounded-[5px] py-[15px] px-[25px] text-[#fff] text-[14px] leading-[17px] font-semibold">
-                    Upgrade +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+   <div className="mt-20">
+  <div className="text-center font-bold text-4xl">
+    <h1>Our Startups</h1>
+  </div>
+  <div className="text-center mt-4">
+    <label htmlFor="startupFilter" className="text-lg mr-2">
+      Filter:
+    </label>
+    <select id="startupFilter" className="border p-2 rounded">
+      <option value="all">All Startups</option>
+      <option value="category1">Category 1</option>
+      <option value="category2">Category 2</option>
+      {/* Add more options as needed */}
+    </select>
+  </div>
+  <div className="grid lg:grid-cols-3 grid-cols-1 justify-items-center p-16 gap-6">
+    <div className="border rounded-3xl p-16 hover:bg-gray-400 hover:text-black">
+      <div>
+        <video width="400" height="auto" controls>
+          <source
+            src="https://www.youtube.com/watch?v=Yz70pAzgN5s"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
       </div>
+      <h1 className="text-2xl font-bold">Dedicated Mate</h1>
+      <p>1-on-1 support from experienced founders.</p>
+    </div>
+
+   
+  </div>
+  <div className="flex justify-center mt-4">
+    <button className="btn-paginate">Previous</button>
+    <span className="mx-4">Page 1 of 3</span>
+    <button className="btn-paginate">Next</button>
+  </div>
+  <div className="flex justify-center">
+    <button className="mt-8 btn-gradiant">Apply Now</button>
+  </div>
+</div>
+
     </>
   );
 }

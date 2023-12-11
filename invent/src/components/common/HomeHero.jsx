@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react";
 import jaseem from "../../assets/investor.jpg";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import StartupFilterList from "../userComponents/StartupFilterList";
+import { useSelector } from "react-redux";
 
 function HomeHero() {
+  const user = useSelector((state) => state.userReducer.user);
+
   return (
     <>
-    <div className="flex flex-col md:flex-row items-center p-16 space-x-16">
+      <div className="flex flex-col md:flex-row items-center p-16 space-x-16">
         <div>
           <h1 className="font-bold text-6xl md:text-8xl animated-gradien text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
             First we build. Then we invest.
@@ -14,8 +18,22 @@ function HomeHero() {
             Enabling entrepreneurs by providing them with the best possible
             support in their journey
           </p>
-
-          <Link to={'/entrepreneur/login'}><button className="mt-8 btn-gradiant">Apply Now--</button></Link>
+          {user ? (
+            <>
+              <Link to={"/entrepreneur/buildStartup"}>
+                <button
+                  className="mt-8 btn-gradiant"
+                >
+                  Build Now--
+                </button>
+              </Link>
+              
+            </>
+          ) : (
+            <Link to={"/entrepreneur/login"}>
+              <button className="mt-8 btn-gradiant">Apply Now--</button>
+            </Link>
+          )}
         </div>
         <div className="p-4">
           <img
@@ -25,8 +43,11 @@ function HomeHero() {
           />
         </div>
       </div>
+      {/* Startup list */}
 
-    {/* how ecosystem */}
+      <StartupFilterList />
+
+      {/* how ecosystem */}
 
       <div className="mt-20">
         <div className="text-center font-bold text-4xl">
@@ -60,7 +81,7 @@ function HomeHero() {
         </div>
       </div>
 
-    {/* how we build ideas */}
+      {/* how we build ideas */}
 
       <div className="mt-20">
         <div className="text-center font-bold text-4xl">
@@ -99,10 +120,9 @@ function HomeHero() {
         </div>
       </div>
 
+      {/* what have in community */}
 
-     {/* what have in community */}
-
-     <div className="mt-20">
+      <div className="mt-20">
         <div className="text-center font-bold text-4xl">
           <h1>What's There in Community?</h1>
         </div>
@@ -160,10 +180,9 @@ function HomeHero() {
         </div>
       </div>
 
+      {/* How to get into the community? */}
 
-     {/* How to get into the community? */}
-
-     <div className="mt-20">
+      <div className="mt-20">
         <div className="text-center font-bold text-4xl">
           <h1>How to get into the community?</h1>
         </div>
@@ -218,11 +237,15 @@ function HomeHero() {
             <p>Join Wishlist</p>
           </div>
         </div>
-        <h1 className="text-xl font-bold text-center mt-5">Our community is selection-based, we follow a screening process</h1>
-        <div className="flex justify-center"><button className="btn-gradiant mt-10">Apply Now</button></div>
+        <h1 className="text-xl font-bold text-center mt-5">
+          Our community is selection-based, we follow a screening process
+        </h1>
+        <div className="flex justify-center">
+          <button className="btn-gradiant mt-10">Apply Now</button>
+        </div>
       </div>
     </>
-  )
+  );
 }
 
-export default HomeHero
+export default HomeHero;

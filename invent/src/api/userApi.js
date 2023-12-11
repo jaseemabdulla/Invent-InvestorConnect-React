@@ -2,6 +2,7 @@ import axios from './axiosInstance'
 
 
 export const userLoginVerification = async (logindata) =>{
+    console.log('===============login==========',logindata);
     const data = await axios.post('/api/login/',logindata);
     return data;
 };
@@ -38,3 +39,27 @@ export const stripeCeckoutAxios = async () => {
     const data = await axios.post('/payment/createCheckoutSession/')
     return data
 }
+
+// payment Success
+
+export const stripePaymentSuccessAxios = async (session_id) => {
+    const data = await axios.post('/payment/paymentSeccess/',session_id)
+    return data
+}
+
+// list all startups
+
+export const lsitAllStartupAxios = async (page) => {
+    const data = await axios.get(`/startup/listAllStartups/?page=${page}`)
+    return data
+}
+
+// list Filtered startups
+
+export const lsitFilteredStartupAxios = async (page,industry) => {
+    const data = await axios.get(`/startup/listAllStartups/?page=${page}&startup_industry=${industry}`)
+    return data
+}
+
+
+

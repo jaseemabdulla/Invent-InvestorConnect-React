@@ -9,7 +9,8 @@ function NavBar() {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    localStorage.removeItem("userToken");
+    localStorage.removeItem("userAccessToken");
+    localStorage.removeItem("userRefreshToken");
     dispatch(userLogout());
   };
 
@@ -40,7 +41,7 @@ function NavBar() {
             >
               
                 <li>
-                <Link to={"/"}>Home</Link>
+                <Link to={"/"}>Homeee</Link>
                 </li>
               
               <li>

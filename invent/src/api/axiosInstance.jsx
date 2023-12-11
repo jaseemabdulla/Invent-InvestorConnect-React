@@ -8,13 +8,49 @@ const axiosInstance = axios.create({
 })
  
 
+// axiosInstance.interceptors.request.use(
+//     (config)=>{
+//         const token = localStorage.getItem('userAccessToken')
+//         if (token){
+//             config.headers['Authorization'] = `Bearer ${token}`
+//         }
+//         console.log('=================config===================',config);
+//         return config
+//     },
+//     (error)=>{
+//         return Promise.reject(error)
+//     }
+// )
+
+
+
+
 axiosInstance.interceptors.request.use(
-    (config)=>{
-        const token = localStorage.getItem('userToken')
+    async (config) =>{
+        const token = localStorage.getItem('userAccessToken')
+
         if (token){
-            config.headers['Authorization'] = `Bearer ${token}`
+            const decodedToken = jwtDecode(token)
+
+            if (decodedToken.exp*1000 < Date.now()){
+                const refrshToken = localStorage.getItem('userRefreshToken')
+                const response = await axios.post(`${baseURL}/api/refreshToken/`,{'refresh_token':refrshToken})
+
+                if (response.status === 200){
+                    const {refresh, access} = response.data
+                    localStorage.setItem('userAccessToken',access)
+                    localStorage.setItem('userRefreshToken',refresh)
+                    config.headers['Authorization'] = `Bearer ${access}`
+                }
+                else{
+                    // if refresh fail , redirect to login or handle it
+                }
+            }
+            else{
+                // token is still valid , use it in the request
+                config.headers['Authorization'] = `Bearer ${token}`
+            }
         }
-        console.log('=================config===================',config);
         return config
     },
     (error)=>{
@@ -22,37 +58,4 @@ axiosInstance.interceptors.request.use(
     }
 )
 
-
 export default axiosInstance
-
-// axiosInstance.interceptors.request.use(
-//     async (config) =>{
-//         const token = JSON.parse(localStorage.getItem('userToken'))
-//         console.log('ddddddddddddddddddddddddddddddddd',token)
-
-//         if (token && token.access){
-//             const decodedToken = jwtDecode(token.access)
-
-//             if (decodedToken.exp*1000 < Date.now()){
-//                 const response = await axios.post(`${baseURL}/api/refresh/`,{refresh:token.refresh})
-
-//                 if (response.status === 200){
-//                     const newToken = response.data
-//                     localStorage.setItem('userToken',JSON.stringify(newToken))
-//                     config.headers.Authorization = `Bearer ${newToken.access}`
-//                 }
-//                 else{
-//                     // if refresh fail , redirect to login or handle it
-//                 }
-//             }
-//             else{
-//                 // token is still valid , use it in the request
-//                 config.headers.Authorization = `bearer ${token.access}`
-//             }
-//         }
-//         return config
-//     },
-//     (error)=>{
-//         return Promise.reject(error)
-//     }
-// )

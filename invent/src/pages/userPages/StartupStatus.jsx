@@ -6,9 +6,11 @@ import { toast } from "react-toastify";
 import Loading from "../../components/common/Loading";
 import Payment from "../../components/common/Payment";
 
-function StartupStatus() {
+
+function StartupStatus(props) {
 
   const [loading, setLoading] = useState(false);
+ 
 
   return (
     <>

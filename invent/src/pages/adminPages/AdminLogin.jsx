@@ -29,12 +29,13 @@ function AdminLogin() {
       const res = await adminLoginAxios(values)
       if (res?.status === 200){
         const {token, user} = res.data
-        localStorage.setItem("userToken",token.access)
+        localStorage.setItem("userAccessToken",token.access)
+        localStorage.setItem("userRefreshToken",token.refresh)
         dispatch(
           userLogin({
             token:token,
             user:user
-          })
+          })  
         )
         navigate('/admin/home/')
         toast.success(res?.data?.messege,{theme:"dark"})

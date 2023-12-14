@@ -56,7 +56,7 @@ function NavBar() {
               </li>
               <li>
               <Link>Market Research</Link>
-               
+                 
               </li>
             </ul>
           </div>

@@ -4,7 +4,7 @@ function Footer() {
   return (  
     <>
     {/* section footer */}
-
+  
     <div className="flex p-16 border-t border-b border-gray-700 bg-gray-950 mt-16">
         <div className="w-1/4">
           <h1 className="font-bold text-2xl">About</h1>

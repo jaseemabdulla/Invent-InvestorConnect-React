@@ -11,6 +11,7 @@ import Loading from "../../components/common/Loading";
 import jaseem from "../../assets/investor.jpg";
 import AdminStartupList from "../../components/adminComponents/AdminStartupList";
 import AddMentor from "../../components/adminComponents/AddMentor";
+import ListMentorRequest from "../../components/adminComponents/ListMentorRequest";
 
 function AdminHome() {
   const [loading, setLoading] = useState(false);
@@ -189,6 +190,10 @@ function AdminHome() {
           <Tab label="Add Mentors">
             
             <AddMentor/>
+          </Tab>
+          <Tab label="Mentor Requests">
+            
+            <ListMentorRequest/>
           </Tab>
         </Tabs>
       </div>

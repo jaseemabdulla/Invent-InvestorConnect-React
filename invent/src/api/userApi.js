@@ -28,8 +28,8 @@ export const addStartupAxios = async (startupData)=>{
 
 // list user's startups
 
-export const listUserStartupAxios = async ()=> {
-    const data = await axios.get('/startup/listUserStartups/')
+export const listUserStartupAxios = async (page)=> {
+    const data = await axios.get(`/startup/listUserStartups/?page=${page}`)
     return data
 }
 
@@ -58,6 +58,20 @@ export const lsitAllStartupAxios = async (page) => {
 
 export const lsitFilteredStartupAxios = async (page,industry) => {
     const data = await axios.get(`/startup/listAllStartups/?page=${page}&startup_industry=${industry}`)
+    return data
+}
+
+// make mentor Requests
+
+export const makeMentorRequestAxios = async () => {
+    const data = await axios.post('/mentor/createMentorRequest/')
+    return data
+}
+
+// get mentor request obj
+
+export const getMentorRequestobj = async () => {
+    const data = await axios.get('/mentor/getMentorRequesObj/')
     return data
 }
 

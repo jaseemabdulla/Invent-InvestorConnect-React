@@ -11,6 +11,7 @@ import UserProfile from "../pages/userPages/UserProfile";
 import StartupStatus from "../pages/userPages/StartupStatus";
 import BuildStrtup from "../pages/userPages/BuildStrtup";
 import PaymentProtect from "./userProtect/PaymentProtect";
+import SingleStartupBuild from "../pages/userPages/SingleStartupBuild";
 
 
 function UserRoute() {
@@ -46,8 +47,8 @@ function UserRoute() {
       />
       <Route path="/profile" element={<UserProtect><UserProfile/></UserProtect>}/>
       <Route path="/startupStatus" element={<UserProtect><StartupStatus/></UserProtect>}/>
-      <Route path="/buildStartup" element={<PaymentProtect><BuildStrtup/></PaymentProtect>}/>
-      
+      <Route path="/buildStartup" element={<UserProtect><PaymentProtect><BuildStrtup/></PaymentProtect></UserProtect>}/>
+
     </Routes>
   );
 }

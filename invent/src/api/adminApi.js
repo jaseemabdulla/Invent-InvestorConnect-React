@@ -64,3 +64,17 @@ export const createMentorProfileAxios = async (mentorData) => {
     const data = await axiosInstance.post('/mentor/createMentorProfile/',mentorData)
     return data      
 }
+
+// list mentor Request 
+
+export const listMentorRequestAxios = async () => {
+    const data = await axiosInstance.get('/mentor/listMentorRequest/')
+    return data
+}
+
+// assign a mentor to user
+
+export const assignMentorAxios = async (creationData) => {
+    const data = await axiosInstance.post('/mentor/assignMentor/',creationData)
+    return data
+}

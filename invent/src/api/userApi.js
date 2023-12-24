@@ -71,7 +71,7 @@ export const makeMentorRequestAxios = async () => {
 // get mentor request obj
 
 export const getMentorRequestobj = async () => {
-    const data = await axios.get('/mentor/getMentorRequesObj/')
+    const data = await axios.get('/mentor/getMentorRequestObj/')
     return data
 }
 

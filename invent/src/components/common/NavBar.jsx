@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import jaseem from "../../assets/investor.jpg";
 
 function NavBar() {
-  const user = useSelector((state) => state.userReducer.user);
+  const user = useSelector((state) => state.userReducer.user);   
   const dispatch = useDispatch();
 
   const handleLogout = () => {

@@ -1,16 +1,16 @@
 import React from 'react'
 import NavBar from '../../components/common/NavBar'
-import Login from '../../components/common/Login'
 import Footer from '../../components/common/Footer'
+import ListMentorEntrepreneurs from '../../components/mentorComponents/ListMentorEntrepreneurs'
 
-function InvestorLogin() {
+function MentorProfile() {
   return (
     <>
     <NavBar/>
-    <Login role='investor'/>
+    <ListMentorEntrepreneurs/>
     <Footer/>
     </>
   )
 }
 
-export default InvestorLogin
+export default MentorProfile

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function UserMentor(props) {
   const mentor = props.mentorData
@@ -13,6 +14,11 @@ function UserMentor(props) {
             />
             <h1 className="text-lg font-bold uppercase">{mentor.user.first_name}</h1>
             <p>{mentor.user.email}</p>
+          </div>
+          <div className='flex justify-center'>
+            <Link to={'/entrepreneur/inbox'}>
+          <button className='btn-normal'>Chat With Mentor</button>
+          </Link>
           </div>
     </>
   )

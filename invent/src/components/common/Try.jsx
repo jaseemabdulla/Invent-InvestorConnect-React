@@ -1,52 +1,71 @@
 import React, { useState, useEffect } from "react";
-import { googleLogout, useGoogleLogin } from "@react-oauth/google";
-import axios from "axios";
-import NavBar from "./NavBar";
+
 
 function Try() {
+  const [socket, setSocket] = useState(null);
+  const [username, setUsername] = useState("");
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    
+
+    // Connect to the WebSocket server with the username as a query parameter
+    const newSocket = new WebSocket(`ws://localhost:8000/ws/chat/`);
+    setSocket(newSocket);
+
+    newSocket.onopen = () => console.log("WebSocket connected");
+    newSocket.onclose = () => console.log("WebSocket disconnected");
+
+    // Clean up the WebSocket connection when the component unmounts
+    return () => {
+      newSocket.close();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        setMessages((prevMessages) => [...prevMessages, data]);
+      };
+    }
+  }, [socket]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (message && socket) {
+      const data = {
+        message: message,
+        username: username,
+      };
+      socket.send(JSON.stringify(data));
+      setMessage("");
+    }
+  };
   return (
     <>
-   <div className="mt-20">
-  <div className="text-center font-bold text-4xl">
-    <h1>Our Startups</h1>
-  </div>
-  <div className="text-center mt-4">
-    <label htmlFor="startupFilter" className="text-lg mr-2">
-      Filter:
-    </label>
-    <select id="startupFilter" className="border p-2 rounded">
-      <option value="all">All Startups</option>
-      <option value="category1">Category 1</option>
-      <option value="category2">Category 2</option>
-      {/* Add more options as needed */}
-    </select>
-  </div>
-  <div className="grid lg:grid-cols-3 grid-cols-1 justify-items-center p-16 gap-6">
-    <div className="border rounded-3xl p-16 hover:bg-gray-400 hover:text-black">
-      <div>
-        <video width="400" height="auto" controls>
-          <source
-            src="https://www.youtube.com/watch?v=Yz70pAzgN5s"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
+<div className="chat-container">
+      <div className="chat-header">Chat</div>
+      <div className="message-container">
+        {messages.map((message, index) => (
+          <div key={index} className="message">
+            <div className="message-username">{message.username}:</div>
+            <div className="message-content">{message.message}</div>
+            <div className="message-timestamp">{message.timestamp}</div>
+          </div>
+        ))}
       </div>
-      <h1 className="text-2xl font-bold">Dedicated Mate</h1>
-      <p>1-on-1 support from experienced founders.</p>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Type a message..."
+          value={message}
+          onChange={(event) => setMessage(event.target.value)}
+        />
+        <button type="submit">Send</button>
+      </form>
     </div>
-
-   
-  </div>
-  <div className="flex justify-center mt-4">
-    <button className="btn-paginate">Previous</button>
-    <span className="mx-4">Page 1 of 3</span>
-    <button className="btn-paginate">Next</button>
-  </div>
-  <div className="flex justify-center">
-    <button className="mt-8 btn-gradiant">Apply Now</button>
-  </div>
-</div>
 
     </>
   );

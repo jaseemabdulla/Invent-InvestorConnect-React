@@ -13,3 +13,10 @@ export const checkPaymentAxios = async () => {
     const data = await axiosInstance.get('/payment/paymentValidation/')
     return data
 }
+
+// Get messages 
+
+export const getMessagesAxios = async (receiver_id) => {
+    const data = await axiosInstance.get(`/chat/messages/${receiver_id}/`)
+    return data
+}

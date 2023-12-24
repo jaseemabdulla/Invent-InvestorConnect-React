@@ -1,37 +1,40 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import NavBar from './NavBar'
-import { getMessagesAxios } from '../../api/commonApi';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import NavBar from "../common/NavBar";
+import { useLocation } from "react-router-dom";
+import { getMessagesAxios } from "../../api/commonApi";
 
+function MentorChat() {
+  const user = useSelector((state) => state.userReducer.user);
 
-function Chat() {
+  console.log('==============user=============',user);
 
-  const user = useSelector((state) => state.userReducer.user)
-
-  console.log(user);
+  const location = useLocation()
+  const data = location.state
 
   const [socket, setSocket] = useState(null);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const fetchMessages = async ()=>{
-    console.log('dddddddddddddddddddddddddddddddddddddddd');
-    try{
-      if(user){
-
-        const res = await getMessagesAxios(user.mentor.user.id)
-        setMessages(res.data)
+  const fetchMessages = async () => {
+    console.log("dddddddddddddddddddddddddddddddddddddddd");
+    try {
+      if (user) {
+        const res = await getMessagesAxios(data.id);
+        setMessages(res.data);
         console.log(res.data);
       }
-    }catch(error){
+    } catch (error) {
       console.log(error);
     }
-  }
-  
-  useEffect(()=>{
-    if(user){
-      fetchMessages()
-      const newSocket = new WebSocket(`ws://localhost:8000/ws/chat/${user.user.id}/${user.mentor.user.id}/`);
+  };
+
+  useEffect(() => {
+    if (user) {
+      fetchMessages();
+      const newSocket = new WebSocket(
+        `ws://localhost:8000/ws/chat/${user.user.id}/${data.id}/`
+      );
       setSocket(newSocket);
 
       newSocket.onopen = () => console.log("WebSocket connected");
@@ -42,8 +45,7 @@ function Chat() {
         newSocket.close();
       };
     }
-  },[])
-
+  }, []);
 
   useEffect(() => {
     if (socket) {
@@ -53,10 +55,6 @@ function Chat() {
       };
     }
   }, [socket]);
-
-
-  
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -68,7 +66,6 @@ function Chat() {
       setMessage("");
     }
   };
-
   return (
     <>
     <NavBar/>
@@ -129,7 +126,7 @@ function Chat() {
           />
         </div>
         <div className="flex-1">
-          <h2 className="text-lg font-semibold">{user.mentor.user.first_name}</h2>
+          <h2 className="text-lg font-semibold">hiiiii</h2>
           <p className="text-gray-600">Hoorayy!!</p>
         </div>
       </div>
@@ -152,7 +149,7 @@ function Chat() {
       <div className="flex mb-4 cursor-pointer">
         <div className="w-9 h-9 rounded-full flex items-center justify-center mr-2">
           <img
-            src={user.mentor.profile_picture}
+            src={user.profile_picture}
             alt="User Avatar"
             className="w-8 h-8 rounded-full"
           />
@@ -197,7 +194,7 @@ function Chat() {
 </div>
 
     </>
-  )
+  );
 }
 
-export default Chat
+export default MentorChat;

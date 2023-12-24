@@ -16,6 +16,9 @@ function CommonPublic(props) {
         else if (user.user.role === 'admin'){
             return <Navigate to={'/admin/home'}/>
         }
+        else if (user.user.role === 'mentor'){
+            return <Navigate to={'/mentor/profile'}/>
+        }
     }
     else {
         return props.children

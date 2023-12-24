@@ -3,14 +3,14 @@ import NavBar from '../../components/common/NavBar'
 import Login from '../../components/common/Login'
 import Footer from '../../components/common/Footer'
 
-function InvestorLogin() {
+function MentorLogin() {
   return (
     <>
     <NavBar/>
-    <Login role='investor'/>
+    <Login role = 'mentor'/>
     <Footer/>
     </>
   )
 }
 
-export default InvestorLogin
+export default MentorLogin

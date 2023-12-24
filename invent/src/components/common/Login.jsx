@@ -46,7 +46,9 @@ function Login({role}) {
         if (user.user.role === 'entrepreneur'){
 
           navigate("/entrepreneur/");
-        } else {
+        }else if (user.user.role === 'mentor'){
+          navigate("/mentor/profile");
+        }else if (user.user.role === 'investor'){
           navigate("/investor/");
         }
       }else{
@@ -82,7 +84,9 @@ function Login({role}) {
         if (user.user.role === 'entrepreneur'){
 
           navigate("/entrepreneur/");
-        } else {
+        } else if (user.user.role === 'mentor'){
+          navigate("/mentor/profile");
+        }else if (user.user.role === 'investor'){
           navigate("/investor/");
         }
       }else{
@@ -181,6 +185,7 @@ const errorMessage = (error) => {
                   </button>
                 </div>
               </form>
+              {role !== 'mentor' && (
               <div className="mt-4 text-sm text-gray-400 text-center">
                 <p>
                   Don't have an account?{" "}
@@ -200,6 +205,7 @@ const errorMessage = (error) => {
                   )}
                 </p>
               </div>
+              )}
             </div>
           </div>
           {/* Right Pane */}

@@ -33,7 +33,7 @@ function MentorChat() {
     if (user) {
       fetchMessages();
       const newSocket = new WebSocket(
-        `ws://localhost:8000/ws/chat/${user.user.id}/${data.id}/`
+        `wss://invent.lojlee.shop:8000/ws/chat/${user.user.id}/${data.id}/`
       );
       setSocket(newSocket);
 

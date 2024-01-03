@@ -31,7 +31,7 @@ function Chat() {
   useEffect(()=>{
     if(user){
       fetchMessages()
-      const newSocket = new WebSocket(`ws://localhost:8000/ws/chat/${user.user.id}/${user.mentor.user.id}/`);
+      const newSocket = new WebSocket(`wss://invent.lojlee.shop/ws/chat/${user.user.id}/${user.mentor.user.id}/`);
       setSocket(newSocket);
 
       newSocket.onopen = () => console.log("WebSocket connected");

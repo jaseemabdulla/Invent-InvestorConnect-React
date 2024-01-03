@@ -51,7 +51,7 @@ function Payment() {
                   </p>
                 </div>
                 <div className="mt-[25px]">
-                    <form action="http://localhost:8000/payment/createCheckoutSession/" method='POST'>
+                    <form action="https://invent.lojlee.shop/payment/createCheckoutSession/" method='POST'>
                   <button type='submit' className="bg-[#006EF5] rounded-[5px] py-[15px] px-[25px] text-[#fff] text-[14px] leading-[17px] font-semibold">
                     Downgrade +
                   </button>

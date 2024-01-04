@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { jwtDecode } from "jwt-decode";
 
-// const baseURL  = 'http://localhost:8000';
-const baseURL  = 'https://invent.lojlee.shop';
+
+const baseURL  = import.meta.env.VITE_APP_BASEURL;
 
 const axiosInstance = axios.create({
     baseURL,

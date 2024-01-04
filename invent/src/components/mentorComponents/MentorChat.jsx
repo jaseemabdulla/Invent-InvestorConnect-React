@@ -7,7 +7,7 @@ import { getMessagesAxios } from "../../api/commonApi";
 function MentorChat() {
   const user = useSelector((state) => state.userReducer.user);
 
-  const webSocket  = import.meta.env.VITE_APP_WEBSOCKET_URL;
+  
 
   console.log('==============user=============',user);
 
@@ -35,7 +35,7 @@ function MentorChat() {
     if (user) {
       fetchMessages();
       const newSocket = new WebSocket(
-        `${webSocket}/${user.user.id}/${data.id}/`
+        `wss://invent.lojlee.shop/ws/chat/${user.user.id}/${data.id}/`
       );
       setSocket(newSocket);
 

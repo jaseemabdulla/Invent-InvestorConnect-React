@@ -8,7 +8,7 @@ function Chat() {
 
   const user = useSelector((state) => state.userReducer.user)
 
-  const webSocket  = import.meta.env.VITE_APP_WEBSOCKET_URL;
+  
 
   console.log(user);
 
@@ -33,7 +33,7 @@ function Chat() {
   useEffect(()=>{
     if(user){
       fetchMessages()
-      const newSocket = new WebSocket(`${webSocket}/${user.user.id}/${user.mentor.user.id}/`);
+      const newSocket = new WebSocket(`wss://invent.lojlee.shop/ws/chat/${user.user.id}/${user.mentor.user.id}/`);
       setSocket(newSocket);
 
       newSocket.onopen = () => console.log("WebSocket connected");

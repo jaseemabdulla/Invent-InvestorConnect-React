@@ -60,8 +60,9 @@ function NavBar() {
               </li>
             </ul>
           </div>
-          <button className="text-4xl font-bold"> StartupGear.{user ? user.user.role : null}</button>
-        
+          <div>
+          <button className="text-2xl lg:text-4xl xl:text-5xl font-bold"> StartupGear.</button>
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -91,9 +92,6 @@ function NavBar() {
         </div>
         {user ? (
         <div className="navbar-end gap-8">
-          <div>
-            <button className="btn-gradiant">Status</button>
-          </div>
           <div>
             <button onClick={handleLogout} className="btn-gradiant">Logout</button>
           </div>

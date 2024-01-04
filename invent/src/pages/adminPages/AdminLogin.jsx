@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import bacckGround from '../../assets/AdminLogin.jpg'
+// import bacckGround from '../../assets/AdminLogin.jpg'
 import {useFormik} from 'formik'
 import {adminLoginAxios} from '../../api/adminApi'
 import { useDispatch } from "react-redux";
@@ -61,7 +61,7 @@ function AdminLogin() {
       <div
         className="flex h-screen w-full items-center justify-center bg-gray-900 bg-cover bg-no-repeat"
         style={{
-          backgroundImage:`url(${bacckGround})`
+          // backgroundImage:`url(${bacckGround})`
             
         }}
       >

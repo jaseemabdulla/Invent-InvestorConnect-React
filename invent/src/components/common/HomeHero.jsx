@@ -1,5 +1,6 @@
 import React from "react";
 import jaseem from "../../assets/investor.jpg";
+import startupHome from "../../assets/startupHome1.jpg"
 import { Link } from "react-router-dom";
 import StartupFilterList from "../userComponents/StartupFilterList";
 import { useSelector } from "react-redux";
@@ -9,37 +10,30 @@ function HomeHero() {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row items-center p-16 space-x-16">
-        <div>
-          <h1 className="font-bold text-6xl md:text-8xl animated-gradien text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+      <div className="flex flex-col md:flex-row items-center p-4 md:p-16 space-y-4 md:space-y-0 md:space-x-16 mt-5">
+        <div className="text-center md:text-left md:w-1/2">
+          <h1 className="font-bold text-4xl md:text-6xl lg:text-8xl animated-gradient text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
             First we build. Then we invest.
           </h1>
-          <p className="text-2xl">
+          <p className="text-sm md:text-lg lg:text-xl">
             Enabling entrepreneurs by providing them with the best possible
             support in their journey
           </p>
           {user ? (
-            <>
-              <Link to={"/entrepreneur/buildStartup"}>
-                <button
-                  className="mt-8 btn-gradiant"
-                >
-                  Build Now--
-                </button>
-              </Link>
-              
-            </>
+            <Link to={"/entrepreneur/buildStartup"}>
+              <button className="mt-4 md:mt-8 btn-gradiant">Build Now--</button>
+            </Link>
           ) : (
             <Link to={"/entrepreneur/login"}>
-              <button className="mt-8 btn-gradiant">Apply Now--</button>
+              <button className="mt-4 md:mt-8 btn-gradiant">Apply Now--</button>
             </Link>
           )}
         </div>
-        <div className="p-4">
+        <div className="p-4 md:w-1/2">
           <img
-            src={jaseem}
+            src={startupHome}
             alt="Shoes"
-            className="rounded-3xl h-[400px] w-[600px]"
+            className="rounded-3xl object-cover w-full"
           />
         </div>
       </div>
@@ -186,62 +180,60 @@ function HomeHero() {
         <div className="text-center font-bold text-4xl">
           <h1>How to get into the community?</h1>
         </div>
-        <div className="flex mt-10 justify-center items-center gap-6 w-full">
-          <div className="bg-white text-black px-16 py-7 rounded-xl">
-            <h1 className="text-2xl font-bold">step 1</h1>
-
+        <div className="flex flex-col md:flex-row mt-10 justify-center items-center gap-6 w-full">
+          {/* Repeat the following block for each step */}
+          <div className="bg-white text-black px-6 md:px-16 py-5 md:py-7 rounded-xl text-center md:text-left">
+            <h1 className="text-2xl font-bold">Step 1</h1>
             <p>Join Wishlist</p>
           </div>
-          <div>
-            <span class="relative flex h-3 w-3">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+          <div className="hidden md:inline-block">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
             </span>
           </div>
-          <div className="bg-white text-black px-16 py-7 rounded-xl">
-            <h1 className="text-2xl font-bold">step 1</h1>
-
+          <div className="bg-white text-black px-6 md:px-16 py-5 md:py-7 rounded-xl text-center md:text-left">
+            <h1 className="text-2xl font-bold">Step 1</h1>
             <p>Join Wishlist</p>
           </div>
-          <div>
-            <span class="relative flex h-3 w-3">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+          <div className="hidden md:inline-block">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
             </span>
           </div>
-          <div className="bg-white text-black px-16 py-7 rounded-xl">
-            <h1 className="text-2xl font-bold">step 1</h1>
-
+          <div className="bg-white text-black px-6 md:px-16 py-5 md:py-7 rounded-xl text-center md:text-left">
+            <h1 className="text-2xl font-bold">Step 1</h1>
             <p>Join Wishlist</p>
           </div>
-          <div>
-            <span class="relative flex h-3 w-3">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+          <div className="hidden md:inline-block">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
             </span>
           </div>
-          <div className="bg-white text-black px-16 py-7 rounded-xl">
-            <h1 className="text-2xl font-bold">step 1</h1>
-
+          <div className="bg-white text-black px-6 md:px-16 py-5 md:py-7 rounded-xl text-center md:text-left">
+            <h1 className="text-2xl font-bold">Step 1</h1>
             <p>Join Wishlist</p>
           </div>
-          <div>
-            <span class="relative flex h-3 w-3">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+          <div className="hidden md:inline-block">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
             </span>
           </div>
-          <div className="bg-white text-black px-16 py-7 rounded-xl">
-            <h1 className="text-2xl font-bold">step 1</h1>
-
+          <div className="bg-white text-black px-6 md:px-16 py-5 md:py-7 rounded-xl text-center md:text-left">
+            <h1 className="text-2xl font-bold">Step 1</h1>
             <p>Join Wishlist</p>
           </div>
+
+          {/* Repeat the above block for each step */}
         </div>
         <h1 className="text-xl font-bold text-center mt-5">
           Our community is selection-based, we follow a screening process
         </h1>
-        <div className="flex justify-center">
-          <button className="btn-gradiant mt-10">Apply Now</button>
+        <div className="flex justify-center mt-5">
+          <button className="btn-gradiant">Apply Now</button>
         </div>
       </div>
     </>

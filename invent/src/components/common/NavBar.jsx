@@ -1,19 +1,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogout } from "../../Store/slice/userSlice";
 import { Link } from "react-router-dom";
 import jaseem from "../../assets/investor.jpg";
+
 
 function NavBar() {
   const user = useSelector((state) => state.userReducer.user);   
   const dispatch = useDispatch();
 
-  const handleLogout = () => {
-    localStorage.removeItem("userAccessToken");
-    localStorage.removeItem("userRefreshToken");
-    dispatch(userLogout());
-  };
-
+  
+  
   return (
     <>
       <div className="navbar bg-base-100">
@@ -45,10 +41,10 @@ function NavBar() {
                 </li>
               
               <li>
-                <Link>Startup</Link>
+                <Link to={"/entrepreneur"}>Startup</Link>
               </li>
               <li>
-              <Link>Investor</Link>
+              <Link to={"/investor"}>Investor</Link>
               </li>
               <li>
               <Link to={"/mentor"}>Mentors</Link>
@@ -62,6 +58,7 @@ function NavBar() {
           </div>
           <div>
           <button className="text-2xl lg:text-4xl xl:text-5xl font-bold"> StartupGear.</button>
+         
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -92,9 +89,6 @@ function NavBar() {
         </div>
         {user ? (
         <div className="navbar-end gap-8">
-          <div>
-            <button onClick={handleLogout} className="btn-gradiant">Logout</button>
-          </div>
           <div>
           <Link to={"/entrepreneur/profile"}>
             <img src={user?.profile_picture ?? jaseem} className="w-12 h-12 rounded-full" />

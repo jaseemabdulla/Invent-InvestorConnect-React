@@ -1,34 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { lsitAllStartupAxios, lsitFilteredStartupAxios } from "../../api/userApi";
+import {
+  lsitAllStartupAxios,
+  lsitFilteredStartupAxios,
+} from "../../api/userApi";
 import { toast } from "react-toastify";
 import { lsitStartupIndustryAxios } from "../../api/commonApi";
 import { useSelector } from "react-redux";
-
 
 function StartupFilterList() {
   const [loading, setLoading] = useState(false);
   const [startups, setStartups] = useState({});
   const [startupIndustries, setStartupIndustries] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [filteredStartupIndustry, setFilteredStartupIndustry] = useState(null)
+  const [filteredStartupIndustry, setFilteredStartupIndustry] = useState(null);
 
- useSelector
-  const fetchStartups = async (page,Industry) => {
+  useSelector;
+  const fetchStartups = async (page, Industry) => {
     try {
       setLoading(true);
-      if (filteredStartupIndustry != null){
-        const res = await lsitFilteredStartupAxios(page,Industry);
+      if (filteredStartupIndustry != null) {
+        const res = await lsitFilteredStartupAxios(page, Industry);
         setStartups(res.data);
-        setCurrentPage(res.data.current_page)
-      }
-      else{
-        const Indus = 'all'
-        const res = await lsitFilteredStartupAxios(page,Indus);
+        setCurrentPage(res.data.current_page);
+      } else {
+        const Indus = "all";
+        const res = await lsitFilteredStartupAxios(page, Indus);
         setStartups(res.data);
-        setCurrentPage(res.data.current_page)
-        setFilteredStartupIndustry(null)
+        setCurrentPage(res.data.current_page);
+        setFilteredStartupIndustry(null);
       }
-      setLoading(false)
+      setLoading(false);
     } catch {
       setLoading(false);
       toast.error("server error", { theme: "dark" });
@@ -47,9 +48,8 @@ function StartupFilterList() {
   };
 
   useEffect(() => {
-    fetchStartups(currentPage,filteredStartupIndustry);
-    
-  }, [currentPage,filteredStartupIndustry]);
+    fetchStartups(currentPage, filteredStartupIndustry);
+  }, [currentPage, filteredStartupIndustry]);
 
   useEffect(() => {
     fetchStartupIndustry();
@@ -69,7 +69,7 @@ function StartupFilterList() {
 
   const handleIndustryChange = (event) => {
     setFilteredStartupIndustry(event.target.value);
-    setCurrentPage(1)
+    setCurrentPage(1);
   };
   return (
     <>
@@ -81,8 +81,12 @@ function StartupFilterList() {
           <label htmlFor="startupFilter" className="text-lg mr-2">
             Filter:
           </label>
-          <select id="startupFilter" className="border p-2 rounded" value={filteredStartupIndustry}
-            onChange={handleIndustryChange}>
+          <select
+            id="startupFilter"
+            className="border p-2 rounded"
+            value={filteredStartupIndustry}
+            onChange={handleIndustryChange}
+          >
             <option value="all">All Startups</option>
             {startupIndustries && startupIndustries.length > 0 ? (
               startupIndustries.map((item, key) => (
@@ -97,20 +101,22 @@ function StartupFilterList() {
         </div>
         {startups && startups.results ? (
           <>
-            <div className="grid lg:grid-cols-3 grid-cols-1 justify-items-center p-16 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 md:p-8 lg:p-16">
               {startups.results.map((item, key) => (
                 <div
-                  className="border rounded-3xl p-16 hover:bg-gray-400 hover:text-black"
+                  className="border rounded-3xl p-4 md:p-8 hover:bg-gray-400 hover:text-black"
                   key={key}
                 >
-                  <div>
-                    <video width="400" height="auto" controls>
+                  <div className="aspect-w-16 aspect-h-9">
+                    <video className="object-cover w-full h-full" controls>
                       <source src={item.presentation_video} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                   </div>
-                  <h1 className="text-2xl font-bold">{item.startup_name}</h1>
-                  <p>{item.brief_about}</p>
+                  <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mt-4">
+                    {item.startup_name}
+                  </h1>
+                  <p className="mt-2">{item.brief_about}</p>
                 </div>
               ))}
             </div>
@@ -131,10 +137,10 @@ function StartupFilterList() {
             </div>
           </>
         ) : (
-          <div>no startups</div>
+          <div className="text-center mt-8">No startups</div>
         )}
-        <div className="flex justify-center">
-          <button className="mt-8 btn-gradiant">Apply Now</button>
+        <div className="flex justify-center mt-5">
+          <button className="btn-gradiant">Apply Now</button>
         </div>
       </div>
     </>

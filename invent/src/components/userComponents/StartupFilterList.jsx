@@ -93,7 +93,7 @@ function StartupFilterList() {
                 <option key={key} value={item[0]}>
                   {item[1]}
                 </option>
-              ))
+              ))  
             ) : (
               <option value="not found">Not Found</option>
             )}

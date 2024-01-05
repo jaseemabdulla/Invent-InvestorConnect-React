@@ -5,6 +5,7 @@ import { updateEntrepreneurProfileAxios } from "../../api/userApi";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { userLogin } from "../../Store/slice/userSlice";
+import Loading from "../common/Loading";
 
 function UserProfileEdit() {
   const user = useSelector((state) => state.userReducer.user);
@@ -60,17 +61,27 @@ function UserProfileEdit() {
           })
         )
         toast.success("updated", { theme: "dark" });
+        setLoading(false)
       }
     } catch (errors) {
       console.log(errors);
+      setLoading(false)
     }
   };
 
   return (
     <>
+ {loading ? (
+        <div className="fixed inset-0 flex items-center justify-center">
+          <div className="spinnerouter">
+            <Loading/>
+          </div>
+        </div>
+      ) : (
+    <>
       <div className="container mx-auto my-40">
         <div>
-          <div className="bg-white relative shadow rounded-lg w-5/6 md:w-5/6  lg:w-4/6 xl:w-3/6 mx-auto">
+          <div className="bg-gray-500 relative shadow rounded-lg w-5/6 md:w-5/6  lg:w-4/6 xl:w-3/6 mx-auto">
             <div className="flex justify-center">
               <img
                 src={
@@ -82,10 +93,10 @@ function UserProfileEdit() {
               />
             </div>
             <div className="mt-16">
-              <h1 className="font-bold text-center text-3xl text-gray-900">
+              <h1 className="font-bold text-center text-3xl text-gray-900 uppercase">
                 {user.user.first_name}
               </h1>
-              <p className="text-center text-sm text-gray-400 font-medium">
+              <p className="text-center text-sm text-gray-200 font-medium">
                 {user.user.role}
               </p>
               <p>
@@ -96,32 +107,7 @@ function UserProfileEdit() {
                   Edit Profile
                 </label>
               </div>
-              {/* <div className="flex justify-between items-center my-5 px-6">
-                        <a
-                          href=""
-                          className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3"
-                        >
-                          Facebook
-                        </a>
-                        <a
-                          href=""
-                          className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3"
-                        >
-                          Twitter
-                        </a>
-                        <a
-                          href=""
-                          className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3"
-                        >
-                          Instagram
-                        </a>
-                        <a
-                          href=""
-                          className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3"
-                        >
-                          Email
-                        </a>
-                      </div> */}
+             
               <div className="flex-1 bg-white rounded-lg shadow-xl p-8">
                 <div>
                   <h4 className="text-xl text-gray-900 font-bold">
@@ -266,6 +252,8 @@ function UserProfileEdit() {
           Close
         </label>
       </div>
+      </>
+       )}
     </>
   );
 }

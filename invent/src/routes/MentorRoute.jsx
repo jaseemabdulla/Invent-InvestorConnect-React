@@ -14,7 +14,7 @@ function MentorRoute() {
         <Route path='/' element={<MentorHome/>}/>
         <Route path='/profile' element={<MentorProtect><MentorProfile/></MentorProtect>}/>
         <Route path='/login' element={<CommonPublic><MentorLogin/></CommonPublic>}/>
-        <Route path='/inbox' element={<MentorChat/>}/>
+        <Route path='/inbox' element={<MentorProtect><MentorChat/></MentorProtect>}/>
     </Routes>
   )
 }

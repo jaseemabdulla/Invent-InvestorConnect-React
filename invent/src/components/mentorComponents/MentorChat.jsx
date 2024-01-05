@@ -7,22 +7,20 @@ import { getMessagesAxios } from "../../api/commonApi";
 function MentorChat() {
   const user = useSelector((state) => state.userReducer.user);
 
-  
-
-  console.log('==============user=============',user);
 
   const location = useLocation()
   const data = location.state
+
 
   const [socket, setSocket] = useState(null);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
   const fetchMessages = async () => {
-    console.log("dddddddddddddddddddddddddddddddddddddddd");
+
     try {
       if (user) {
-        const res = await getMessagesAxios(data.id);
+        const res = await getMessagesAxios(data.id.user.id);
         setMessages(res.data);
         console.log(res.data);
       }
@@ -35,9 +33,9 @@ function MentorChat() {
     if (user) {
       fetchMessages();
       const newSocket = new WebSocket(
-        `wss://invent.lojlee.shop/ws/chat/${user.user.id}/${data.id}/`
+        `wss://invent.lojlee.shop/ws/chat/${user.user.id}/${data.id.user.id}/`
       );
-      setSocket(newSocket);
+      setSocket(newSocket); 
 
       newSocket.onopen = () => console.log("WebSocket connected");
       newSocket.onclose = () => console.log("WebSocket disconnected");
@@ -71,129 +69,112 @@ function MentorChat() {
   return (
     <>
     <NavBar/>
-    <div className="flex h-screen overflow-hidden">
-  {/* Sidebar */}
-  <div className="w-1/4 bg-white border-r border-gray-300">
-    {/* Sidebar Header */}
-    <header className="p-4 border-b border-gray-300 flex justify-between items-center bg-indigo-600 text-white">
-      <h1 className="text-2xl font-semibold">Chat Web</h1>
-      <div className="relative">
-        <button id="menuButton" className="focus:outline-none">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-gray-100"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-            <path d="M2 10a2 2 0 012-2h12a2 2 0 012 2 2 2 0 01-2 2H4a2 2 0 01-2-2z" />
-          </svg>
-        </button>
-        {/* Menu Dropdown */}
-        <div
-          id="menuDropdown"
-          className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg hidden"
-        >
-          <ul className="py-2 px-3">
-            <li>
-              <a
-                href="#"
-                className="block px-4 py-2 text-gray-800 hover:text-gray-400"
-              >
-                Option 1
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block px-4 py-2 text-gray-800 hover:text-gray-400"
-              >
-                Option 2
-              </a>
-            </li>
-            {/* Add more menu options here */}
-          </ul>
-        </div>
-      </div>
-    </header>
-    {/* Contact List */}
-    {user && (
-    <div className="overflow-y-auto h-screen p-3 mb-9 pb-20">
-      <div className="flex items-center mb-4 cursor-pointer hover:bg-gray-100 p-2 rounded-md">
-        <div className="w-12 h-12 bg-gray-300 rounded-full mr-3">
-          <img
-            src="https://placehold.co/200x/ffa8e4/ffffff.svg?text=ʕ•́ᴥ•̀ʔ&font=Lato"
-            alt="User Avatar"
-            className="w-12 h-12 rounded-full"
-          />
-        </div>
-        <div className="flex-1">
-          <h2 className="text-lg font-semibold">hiiiii</h2>
-          <p className="text-gray-600">Hoorayy!!</p>
-        </div>
-      </div>
-    </div>
-    )}
-  </div>
-  {/* Main Chat Area */}
-  <div className="flex-1">
-    {/* Chat Header */}
-    <header className="bg-white p-4 text-gray-700">
-      <h1 className="text-2xl font-semibold">Alice</h1>
-    </header>
-    {/* Chat Messages */}
-    <div className="h-screen overflow-y-auto p-4 pb-36">
-      {/* Incoming Message */}
+  
 
-      {messages.map((item, key) => (
-  <React.Fragment key={key}>
-    {item.sender !== user.user.id ? (
-      <div className="flex mb-4 cursor-pointer">
-        <div className="w-9 h-9 rounded-full flex items-center justify-center mr-2">
-          <img
-            src={user.profile_picture}
-            alt="User Avatar"
-            className="w-8 h-8 rounded-full"
-          />
+
+
+
+<div className="flex-1 p:2 sm:p-6 justify-between flex flex-col h-screen">
+        <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
+          
+            <div className="relative flex items-center space-x-4">
+              <div className="relative">
+                <span className="absolute text-green-500 right-0 bottom-0">
+                  <svg width={20} height={20}>
+                    <circle cx={8} cy={8} r={8} fill="currentColor" />
+                  </svg>
+                </span>
+                <img
+                  src={data.id.profile_picture}
+                  alt=""
+                  className="w-10 sm:w-16 h-10 sm:h-16 rounded-full"
+                />
+              </div>
+              <div className="flex flex-col leading-tight">
+                <div className="text-2xl mt-1 flex items-center">
+                  <span className="text-gray-700 mr-3 uppercase">
+                    {data.id.user.first_name}
+                  </span>
+                </div>
+                <span className="text-lg text-gray-600">Entrepreneur</span>
+              </div>
+            </div>
+         
         </div>
-        <div className="flex max-w-96 bg-white rounded-lg p-3 gap-3">
-          <p className="text-gray-700">{item.message}</p>
+        <div
+          id="messages"
+          className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
+        >
+          {messages.map((item, key) => (
+            <React.Fragment key={key}>
+              {item.sender !== user.user.id ? (
+                <div className="chat-message">
+                  <div className="flex items-end">
+                    <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
+                      <div>
+                        <span className="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
+                          {item.message}
+                        </span>
+                      </div>
+                    </div>
+                    <img
+                      src={data.id.profile_picture}
+                      alt="My profile"
+                      className="w-6 h-6 rounded-full order-1"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="chat-message">
+                  <div className="flex items-end justify-end">
+                    <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
+                      <div>
+                        <span className="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">
+                          {item.message}
+                        </span>
+                      </div>
+                    </div>
+                    <img
+                      src={user.profile_picture}
+                      alt="My profile"
+                      className="w-6 h-6 rounded-full order-2"
+                    />
+                  </div>
+                </div>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+        <div className="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
+          
+          <form onSubmit={handleSubmit} className="relative flex">
+            <input
+              type="text"
+              placeholder="Write your message!"
+              value={message}
+              onChange={(event) => setMessage(event.target.value)}
+              className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3"
+            />
+            <div className="absolute right-0 items-center inset-y-0 hidden sm:flex">
+              <button
+                type="submit"
+                className="inline-flex items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none"
+              >
+                <span className="font-bold">Send</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="h-6 w-6 ml-2 transform rotate-90"
+                >
+                  <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                </svg>
+              </button>
+            </div>
+            </form>
+          
         </div>
       </div>
-    ) : (
-      /* Outgoing Message */
-      <div className="flex justify-end mb-4 cursor-pointer">
-        <div className="flex max-w-96 bg-indigo-500 text-white rounded-lg p-3 gap-3">
-          <p>{item.message}</p>
-        </div>
-        <div className="w-9 h-9 rounded-full flex items-center justify-center ml-2">
-          <img
-            src={user.profile_picture}
-            alt="My Avatar"
-            className="w-8 h-8 rounded-full"
-          />
-        </div>
-      </div>
-    )}
-  </React.Fragment>
-))}
-    </div>
-    {/* Chat Input */}
-    <footer className="bg-white border-t border-gray-300 p-4 absolute bottom-0 w-3/4">
-      
-      <form onSubmit={handleSubmit} className="flex items-center">
-        <input
-          type="text"
-          placeholder="Type a message..."
-          value={message}
-          className="w-full p-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500"
-          onChange={(event) => setMessage(event.target.value)}
-        />
-        <button type="submit" className="bg-indigo-500 text-white px-4 py-2 rounded-md ml-2">Send</button>
-      </form>
-    </footer>
-  </div>
-</div>
 
     </>
   );

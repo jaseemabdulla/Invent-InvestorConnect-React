@@ -47,7 +47,7 @@ function ListMentorEntrepreneurs() {
         {entrepreneurs && entrepreneurs.length > 0 ? (
           entrepreneurs.map((item,key)=>(
           <div className="col-span-1 text-center mb-4" key={key}>
-            <Link to={'/mentor/inbox'} state={{'id':item.user.id}}>
+            <Link to={'/mentor/inbox'} state={{'id':item}}>
             <img
               src={item.profile_picture}
               alt=""

@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { userLogout } from "../../Store/slice/userSlice";
 import { Link } from "react-router-dom";
 import jaseem from "../../assets/investor.jpg";
 
@@ -8,7 +9,11 @@ function NavBar() {
   const user = useSelector((state) => state.userReducer.user);   
   const dispatch = useDispatch();
 
-  
+  const handleLogout = () => {
+    localStorage.removeItem("userAccessToken");
+    localStorage.removeItem("userRefreshToken");
+    dispatch(userLogout());
+  };
   
   return (
     <>
@@ -41,10 +46,10 @@ function NavBar() {
                 </li>
               
               <li>
-                <Link to={"/entrepreneur"}>Startup</Link>
+                <Link>Startup</Link>
               </li>
               <li>
-              <Link to={"/investor"}>Investor</Link>
+              <Link>Investor</Link>
               </li>
               <li>
               <Link to={"/mentor"}>Mentors</Link>
@@ -87,8 +92,13 @@ function NavBar() {
             </li>
           </ul>
         </div>
-        {user ? (
+        {user ?(
         <div className="navbar-end gap-8">
+          {user.user.role === 'mentor' || user.user.role === 'admin' ? (
+          <div>
+            <button onClick={handleLogout} className="btn-gradiant">Logout</button>
+          </div>
+          ):null}
           <div>
           <Link to={"/entrepreneur/profile"}>
             <img src={user?.profile_picture ?? jaseem} className="w-12 h-12 rounded-full" />
@@ -97,9 +107,8 @@ function NavBar() {
           
         </div>
 
-        ) : (
-        <div></div>
-        )}
+        ): null}
+
       </div>
     </>
   );
